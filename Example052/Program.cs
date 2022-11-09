@@ -1,7 +1,5 @@
-﻿// Задача _HARD SORT Задайте двумерный массив из целых чисел. Количество строк и столбцов задается
-// с клавиатуры. Отсортировать элементы по возрастанию слева направо и сверху вниз.
-using System;
-using System.Linq;
+﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите
+// среднее арифметическое элементов в каждом столбце.
 Console.Write("Введите число строк:");
 int strock = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите число столбцов:");
@@ -9,7 +7,7 @@ int stolbec = Convert.ToInt32(Console.ReadLine());
 int[,] array_res = inputArray(strock, stolbec);
 printArray(array_res);
 Console.WriteLine(" ");
-sortArray(array_res, strock, stolbec);
+asbArray(array_res, strock, stolbec);
 int[,] inputArray(int strock, int stolbec)
 {
     int[,] array = new int[strock, stolbec];
@@ -34,20 +32,16 @@ void printArray(int[,] arr)
         }
         Console.WriteLine();
     }
-
 }
-void sortArray(int[,] arr, int strock, int stolbec)
+void asbArray(int[,] arr, int strock, int stolbec)
 {
-    var _tmp = new int[arr.GetLength(0) * arr.GetLength(1)];
-    System.Buffer.BlockCopy(arr, 0, _tmp, 0, _tmp.Length * sizeof(int));
-    _tmp = _tmp.OrderBy(x => x).ToArray();
-    System.Buffer.BlockCopy(_tmp, 0, arr, 0, _tmp.Length * sizeof(int));
     for (int i = 0; i < strock; i++)
     {
+        int srAr = 0;
         for (int j = 0; j < stolbec; j++)
         {
-            Console.Write($"{arr[i, j]} ");
+            srAr += arr[j, i];
         }
-        Console.WriteLine();
+        Console.WriteLine($"Cреднее арифметическое элементов столбца {i + 1} = {(float)srAr / 3}");
     }
 }
